@@ -1,0 +1,40 @@
+<RecentDownload>:
+    spacing:2
+    padding: [0,]
+    orientation: 'vertical'
+    size_hint_y: None
+    height: 139
+    radius: [5]
+
+    MDCard:
+        radius: [5,]
+        height: (150*0.6)
+        FitImage:
+            source: root.rThumbnail
+            radius: [5,]
+            size_hint: 1,1 
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            
+
+
+    MDCard:
+        md_bg_color: [0,0,0,1]
+        elevation: 0
+        orientation: 'vertical'
+        Widget:
+        MDLabel:
+            text: root.rTitle
+            halign: 'left'
+            valign: 'top'
+            theme_text_color: 'Custom'
+            text_color: [1,0.9,0.9,0.76]
+            font_size: 12
+            bold: True
+        MDLabel:
+            text: root.rTime
+            halign: 'left'
+            valign: 'top'
+            theme_text_color: 'Custom'
+            text_color: [1,0.9,0.9,0.46]
+            font_size: 11
+            bold: True

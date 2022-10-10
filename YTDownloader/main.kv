@@ -1,0 +1,142 @@
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+#: import Nav components.Nav.Nav.Nav
+#: import RecentDownload components.recent_d.RecentDownload
+
+
+<Main>:
+    md_bg_color: [0,0,0,1]
+    
+    id: main
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        Nav:
+        
+        MDFloatLayout:
+            
+            
+            ScrollView:
+                bar_width: 0
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: 20,50,20,20
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height: True
+                        spacing: '10dp'
+                        
+                        
+                        SearchBar: 
+                
+                        
+                        #Preview Section
+                        MDBoxLayout:
+                            size_hint_y: None
+                            height: 180
+
+                            MDCard:
+                                orientation: 'horizontal'
+                                spacing: 10
+                                elevation: 0
+                                padding: 5
+                                md_bg_color: [0,0,0,1]
+
+                                MDCard:
+                                    size_hint_x: None
+                                    width: 120
+                                    height: 245
+                                    radius: [5,]
+                                    FitImage:
+                                        source: root.thumbnail
+                                        radius: [5,]
+                                        size_hint: 1,1
+                                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                                MDCard:
+                                    md_bg_color: [0,0,0,1]
+                                    orientation: 'vertical'
+                                    spacing: 5
+                                    MDBoxLayout:
+                                        MDLabel:
+                                            text: root.title
+                                            halign: 'left'
+                                            valign: 'top'
+                                            theme_text_color: 'Custom'
+                                            text_color: [1,0.9,0.9,0.86]
+                                            font_size: 16
+                                            bold: True
+                                    MDGridLayout:
+                                        # orientation: 'vertical'
+                                        padding: 0,20,0,0
+                                        cols: 2
+                                        spacing: '5dp'
+                                        id: res
+                                       
+                                        
+                                    Widget:
+                                    MDLabel:
+                                        markup: True
+                                        text: f'[b]Author[/b]: {root.author}'
+                                        halign: 'left'
+                                        valign: 'top'
+                                        theme_text_color: 'Custom'
+                                        text_color: [1,0.9,0.9,0.56]
+                                        font_size: 12
+                                        bold: True
+
+                                    MDRectangleFlatIconButton:
+                                        width: 300
+                                        md_bg_color:"#FCE4E4"
+                                        text: "    Download       "
+                                        icon: "arrow-down-bold-circle"
+                                        radius: [6,]
+                                        theme_text_color: 'Custom'
+                                        text_color: [0,0,0,.76]
+                                        line_color: "#FCE4E4"
+                                        icon_color: [0,0,0,.76]
+                                        bold: True
+                                        on_press: root.download()
+                                        
+                                        
+                        # Recent downloads
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            spacing: 2
+                            size_hint_y: None
+                            height: 260
+                            
+                            
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                adaptive_height: True
+                                Label:
+                                    markup: True
+                                    pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+                                    text: '[b]Recent Downloads[/b]'
+                                    halign: 'center'
+                                    theme_text_color: 'Custom'
+                                    text_color: [1,0.9,0.9,0.56]
+                                    font_size: 20
+                                
+                            MDGridLayout:
+                                cols: 2
+                                spacing: 15
+                                id: recent
+                            
+
+                        # MDBoxLayout:
+                        #     md_bg_color: [.3,.1,.7,1]        
+<MDLabel>:
+    font_name: 'assets/data/Poppins-Black.ttf'
+
+<SearchBar@MDBoxLayout>:
+    MDTextField:
+        hint_text: "paste link here..."
+        color_mode: 'custom'
+        helper_text_mode: "on_focus"
+        line_color_normal: 1,1,1,.8
+        line_color_focus: 1,1,1,.8
+        icon_right: 'card-search'
+        on_text_validate: app.root.get_link(self)
